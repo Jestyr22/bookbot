@@ -4,14 +4,15 @@ def main():
     word_count = get_word_count(book_contents)
     character_count = get_character_count(book_contents)
     print(f"There are {word_count} words in the document.")
-    print(character_count)
+    #print(character_count)
     #Not asked for in the project, but adding some formatting can't hurt
-    '''
+    
     print("Here is a list of how many times each character appears:")
-    #for character, count in character_count.items():
-    #    print (f"{character}: {count}")
-    '''
+    for character, count in character_count.items():
+        print (f"The '{character}' character was found {count} times")
+    
     #turns out adding formatting did hurt, will leave it as comments for future reference
+    #future reference apparently means the very next lesson!
     
    
 def get_book_contents(path):
@@ -27,10 +28,11 @@ def get_character_count(book_contents):
     character_count_dict = {}
     lowercase_contents = book_contents.lower()
     for i in lowercase_contents:
-        if i in character_count_dict:
-            character_count_dict[i] += 1
-        else:
-            character_count_dict[i] = 1
+        if i.isalpha(): #can add "or i.isnumeric()" to add numbers to the filter
+            if i in character_count_dict:
+                character_count_dict[i] += 1
+            else:
+                character_count_dict[i] = 1
     return character_count_dict
         
 
